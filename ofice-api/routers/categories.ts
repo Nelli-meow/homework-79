@@ -59,4 +59,18 @@ categoriesRouter.delete("/:id", async (req, res) => {
     }
 });
 
+categoriesRouter.put("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const newCategoryData = req.body;
+
+        const updatedCategory = await fileDb.updateCategoryById(id, newCategoryData);
+
+        res.status(200).send(updatedCategory);
+    } catch (e) {
+        res.status(500).send('Error updating category');
+    }
+});
+
+
 export default categoriesRouter;

@@ -1,5 +1,6 @@
 import express from "express";
 import fileDb from "../fileDb";
+import categoriesRouter from "./categories";
 
 const placesRouter = express.Router();
 
@@ -54,6 +55,19 @@ placesRouter.delete("/:id", async (req, res) => {
         }
     } catch (e) {
         res.status(500).send('Error');
+    }
+});
+
+placesRouter.put("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const newPlaceData = req.body;
+
+        const updatedPlace = await fileDb.updatePlaceById(id, newPlaceData);
+
+        res.status(200).send(updatedPlace);
+    } catch (e) {
+        res.status(500).send('Error updating place');
     }
 });
 

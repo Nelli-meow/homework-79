@@ -77,5 +77,18 @@ thingsRouter.delete("/:id", async (req, res) => {
     }
 });
 
+thingsRouter.put("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const newThingData = req.body;
+
+        const updatedThing = await fileDb.updateThingById(id, newThingData);
+
+        res.status(200).send(updatedThing);
+    } catch (e) {
+        res.status(500).send('Error updating thing');
+    }
+});
+
 
 export default thingsRouter;
