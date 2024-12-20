@@ -39,7 +39,7 @@ export interface ThingWithoutId {
     date: string;
 }
 
-export interface AllThingsInfo  {
+export interface AllItemsInfo  {
     categories: Category[],
     places: Place[],
     things: Thing[]

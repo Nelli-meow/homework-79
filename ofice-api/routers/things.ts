@@ -1,8 +1,15 @@
 import express from "express";
 import fileDb from "../fileDb";
 import {imagesUpload} from "../multer";
+import {ThingWithoutId} from "../types";
 
 const thingsRouter = express.Router();
+
+interface thingsContext {
+    placeId: string;
+    categoryId: string;
+    name: string;
+}
 
 thingsRouter.get("/", async (req, res) => {
     try {
@@ -30,7 +37,12 @@ thingsRouter.get("/:id", async (req, res) => {
 
 thingsRouter.post("/", imagesUpload.single('image'), async (req, res) => {
     try {
-        const newThing = {
+        const { categoryId , placeId, name } = req.body as thingsContext;
+        if(!categoryId || !placeId || !name) {
+            res.status(404).send("Category not found");
+        }
+
+        const newThing: ThingWithoutId = {
             name: req.body.name,
             categoryId: req.body.categoryId,
             placeId: req.body.placeId,
@@ -41,9 +53,11 @@ thingsRouter.post("/", imagesUpload.single('image'), async (req, res) => {
 
         const createdThing = await fileDb.addThing(newThing);
 
+        console.log(createdThing);
+
         res.status(200).send(createdThing);
     } catch (e) {
-        res.status(500).send('Error adding new thing');
+        res.status(500).send({error: "error adding thing"});
     }
 });
 
@@ -60,7 +74,6 @@ thingsRouter.delete("/:id", async (req, res) => {
         res.status(500).send('Error');
     }
 });
-
 
 
 export default thingsRouter;

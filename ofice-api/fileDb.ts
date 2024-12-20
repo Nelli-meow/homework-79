@@ -1,34 +1,44 @@
 import { promises as fs } from 'fs';
 import crypto from 'node:crypto';
-import {ThingWithoutId, AllThingsInfo} from './types';
+import {ThingWithoutId, AllItemsInfo, CategoryWithoutId} from './types';
 
 const fileName = './db.json';
-let data: AllThingsInfo = {
+let data: AllItemsInfo = {
     categories: [],
     places: [],
     things: [],
 };
 
 const fileDb = {
-    async init() {
+    async ensureFileExists() {
         try {
             const fileContent = await fs.readFile(fileName);
-            data = JSON.parse(fileContent.toString());
+            const parsedData = JSON.parse(fileContent.toString());
+
+            if (!parsedData.categories || !parsedData.places || !parsedData.things) {
+                console.error();
+            }
+
+            data = parsedData;
         } catch (err) {
-            console.error(err);
-            return data;
+            data = { categories: [], places: [], things: [] };
+            await this.save();
         }
+    },
+
+    async init() {
+        await this.ensureFileExists();
     },
 
     async getThings() {
         return data.things;
     },
     async addThing(thing: ThingWithoutId) {
+        await this.ensureFileExists();
+
         const id = crypto.randomUUID();
         const date = new Date().toString();
         const newThing = { id, ...thing, date };
-
-        console.log(newThing);
 
         data.things.push(newThing);
 
@@ -50,8 +60,26 @@ const fileDb = {
         return false;
     },
 
+    async getCategories() {
+        return data.categories;
+    },
+
+    async addCategory(category: CategoryWithoutId) {
+        await this.ensureFileExists();
+
+        const id = crypto.randomUUID();
+        const newCategory = { id, ...category };
+
+        data.categories.push(newCategory);
+
+        console.log(newCategory);
+
+        await this.save();
+        return newCategory;
+    },
+
     async save() {
-        return fs.writeFile(fileName, JSON.stringify(data));
+        return await fs.writeFile(fileName, JSON.stringify(data));
     }
 };
 
