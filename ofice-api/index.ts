@@ -3,6 +3,7 @@ import cors from 'cors';
 import fileDb from "./fileDb";
 import categoriesRouter from "./routers/categories";
 import thingsRouter from "./routers/things";
+import placesRouter from "./routers/places";
 
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/things', thingsRouter);
 app.use('/categories', categoriesRouter);
+app.use('/places', placesRouter);
 
 app.use(express.static('public'));
 

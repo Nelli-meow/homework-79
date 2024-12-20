@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import crypto from 'node:crypto';
-import {ThingWithoutId, AllItemsInfo, CategoryWithoutId} from './types';
+import {ThingWithoutId, AllItemsInfo, CategoryWithoutId, PlaceWithoutId} from './types';
 
 const fileName = './db.json';
 let data: AllItemsInfo = {
@@ -76,6 +76,22 @@ const fileDb = {
 
         await this.save();
         return newCategory;
+    },
+
+    async getPlaces() {
+        return data.places;
+    },
+
+    async addPlace(place: PlaceWithoutId) {
+        await this.ensureFileExists();
+
+        const id = crypto.randomUUID();
+        const newPlace = { id, ...place };
+
+        data.places.push(newPlace);
+
+        await this.save();
+        return newPlace;
     },
 
     async save() {
