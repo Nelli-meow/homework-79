@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {
+      "id": "297e160a-6df7-4ff0-924e-e143aac90142",
+      "name": "Category Name",
+      "description": "Category Description"
+    },
+    {
+      "id": "513d5478-b017-4cad-aa0a-61fd7212f93a",
+      "name": "moscow night",
+      "description": "навеки твояяя!!!!!!"
+    }
+  ],
+  "places": [
+    {
+      "id": "270bcb04-688a-4fd5-934c-1cc33ec791b8",
+      "name": "moscow night",
+      "description": "меня не забудеееет"
+    },
+    {
+      "id": "52c05035-785c-436e-a033-2f3ad69a7eff",
+      "name": "moscow nigeeeeeht",
+      "description": "навеки твояяя!!!!!!"
+    }
+  ],
+  "things": [
+    {
+      "id": "b4c70460-404e-49ee-b5b9-5af2e97b0011",
+      "name": "lenovo",
+      "categoryId": "297e160a-6df7-4ff0-924e-e143aac90142",
+      "placeId": "270bcb04-688a-4fd5-934c-1cc33ec791b8",
+      "description": "навеки",
+      "image": null,
+      "date": "Fri Dec 20 2024 22:03:32 GMT+0600 (Омск, стандартное время)"
+    },
+    {
+      "id": "bc7b3174-f57e-43f0-8526-59697ea30896",
+      "name": "lenovwwwsssssswwo",
+      "categoryId": "297e160a-6df7-4ff0-924e-e143aac90142",
+      "placeId": "270bcb04-688a-4fd5-934c-1cc33ec791b8",
+      "description": "навеки",
+      "image": "dffdfdfdf",
+      "date": "Fri Dec 20 2024 22:24:10 GMT+0600 (Омск, стандартное время)"
+    },
+    {
+      "id": "abeaff4f-7517-48f9-b90a-f02ad6521658",
+      "name": "1111",
+      "categoryId": "297e160a-6df7-4ff0-924e-e143aac90142",
+      "placeId": "270bcb04-688a-4fd5-934c-1cc33ec791b8",
+      "description": "2222222",
+      "image": null,
+      "date": "Fri Dec 20 2024 22:25:02 GMT+0600 (Омск, стандартное время)"
+    },
+    {
+      "id": "c79d1b2e-680a-4e3e-b4c8-f6aabc507b3f",
+      "name": "1111",
+      "categoryId": "297e160a-6df7-4ff0-924e-e143aac90142",
+      "placeId": "270bcb04-688a-4fd5-934c-1cc33ec791b8",
+      "description": "2222222",
+      "image": null,
+      "date": "Fri Dec 20 2024 22:25:07 GMT+0600 (Омск, стандартное время)"
+    }
+  ]
+}
