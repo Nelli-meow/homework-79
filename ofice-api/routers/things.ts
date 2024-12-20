@@ -38,6 +38,7 @@ thingsRouter.get("/:id", async (req, res) => {
 thingsRouter.post("/", imagesUpload.single('image'), async (req, res) => {
     try {
         const { categoryId , placeId, name } = req.body as thingsContext;
+
         if(!categoryId || !placeId || !name) {
             res.status(404).send("Category not found");
             return;

@@ -13,6 +13,21 @@ placesRouter.get("/", async (req, res) => {
     }
 });
 
+placesRouter.get("/:id", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const place = await fileDb.getPLaceById(id);
+        if (place) {
+            res.status(200).send(place);
+        } else {
+            res.status(404).send("place not found");
+        }
+    } catch (e) {
+        res.status(500).send('Error place');
+    }
+});
+
 placesRouter.post("/", async (req, res) => {
     const { name, description } = req.body;
 
@@ -24,6 +39,21 @@ placesRouter.post("/", async (req, res) => {
         res.status(200).send(newPlace);
     } catch (e) {
         res.status(500).send('Error adding place');
+    }
+});
+
+placesRouter.delete("/:id", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const result = await fileDb.deletePlace(id);
+        if (result) {
+            res.status(200).send({ message: "place deleted" });
+        } else {
+            res.status(404).send("place not found");
+        }
+    } catch (e) {
+        res.status(500).send('Error');
     }
 });
 
